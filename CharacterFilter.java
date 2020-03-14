@@ -15,17 +15,22 @@ public class CharacterFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        //将父接口转为子接口
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-        //获取请求方法，因为 get 请求不用处理
+        //获取请求方法
         String method = request.getMethod();
-        //处理 post 请求的响应编码
-        if ("post".equalsIgnoreCase(method)) {
-            request.setCharacterEncoding("UTF-8");
+        if (method.equalsIgnoreCase("get")) {
+            chain.doFilter(request, response);
         }
-        //设置响应编码
-        response.setContentType("text/html;charset=utf-8");
-        chain.doFilter(request, response);
+        //解决post请求中文数据乱码问题
+        if(method.equalsIgnoreCase("post")){
+            request.setCharacterEncoding("utf-8");
+            //处理响应乱码
+            response.setContentType("text/html;charset=utf-8");
+            chain.doFilter(request, response);
+        }
+
     }
 
     public void init(FilterConfig config) throws ServletException {
