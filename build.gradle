@@ -4,20 +4,24 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.soong', name: 'utils', version: '1.4.0'
-   // providedCompile group: 'javax', name: 'javaee-api', version: '8.0'
+    compile group: 'com.soong', name: 'utils', version: '1.5.0'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.2.2.RELEASE'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
     compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+    // jackson 工具，用来转换 json 与 java 对象
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.2'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.2'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.2'
+    // jedis 工具依赖
     compile group: 'redis.clients', name: 'jedis', version: '3.2.0'
-    // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
-    testCompile group: 'org.slf4j', name: 'slf4j-nop', version: '1.7.25'    
+    // 使用 lombok 依赖，使用注解代替 JavaBean 中的 setter、getter、构造器、toString 等，注意下面四行都要
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    compile group: 'org.slf4j', name: 'slf4j-nop', version: '1.7.25'    
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
