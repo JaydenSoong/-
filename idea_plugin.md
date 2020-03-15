@@ -6,3 +6,5 @@
 * Rainbow Brackets
 * String Manipulation
 * Translation
+* Alibaba Java Coding Guidelines
+* Codota
